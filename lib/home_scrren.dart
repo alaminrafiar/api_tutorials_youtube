@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:api_tutorials_youtube/models/Post_model.dart';
+import 'package:api_tutorials_youtube/models/postModel.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 class home_screen extends StatefulWidget {
@@ -12,6 +11,7 @@ class home_screen extends StatefulWidget {
   State<home_screen> createState() => _home_screenState();
 }
 
+//[] arry ar botore name na thakar karone ato kiso likhte hoilo
 class _home_screenState extends State<home_screen> {
   List<PostModel> postList = [];
 
@@ -20,7 +20,9 @@ class _home_screenState extends State<home_screen> {
         await http.get(Uri.parse("https://jsonplaceholder.typicode.com/posts"));
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
+      postList.clear(); // opporer list ar jonno []
       for (Map i in data) {
+        postList.add(PostModel.fromJson(i));
       }
       return postList;
     } else {
@@ -32,27 +34,40 @@ class _home_screenState extends State<home_screen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Rest api tutorials"),
+        title: Text("Api Demo"),
       ),
       body: Column(
         children: [
           Expanded(
             child: FutureBuilder(
-              future: getPostApi(),
-              builder:(context,snapshot){
-                if(!snapshot.hasData){
-                  return Text("Loading");
-                }else{
-                  return ListView.builder(itemBuilder: (context,index){
-                   itemCount:postList.length;
-                    return Text(index.toString());
+                future: getPostApi(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Text("Loading");
+                  } else {
+                    return ListView.builder(itemBuilder: (context, index) {
+                      postList.length;
+                      return Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('title \n' +
+                                  postList[index].title.toString()),
+                              Text('Discription\n' +
+                                  postList[index].title.toString())
+                            ],
+                          ),
+                        ),
+                      );
+                      // return Text(postList[index].title.toString());
+                    });
                   }
-                  );
-                }
-              }
-        ),
+                }),
           )
-      ],
+        ],
       ),
     );
   }

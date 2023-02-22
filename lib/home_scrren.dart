@@ -40,12 +40,13 @@ class _home_screenState extends State<home_screen> {
         children: [
           Expanded(
             child: FutureBuilder(
-                future: getPostApi(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Text("Loading");
-                  } else {
-                    return ListView.builder(itemBuilder: (context, index) {
+              future: getPostApi(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return Text("Loading");
+                } else {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
                       postList.length;
                       return Card(
                         child: Padding(
@@ -63,9 +64,11 @@ class _home_screenState extends State<home_screen> {
                         ),
                       );
                       // return Text(postList[index].title.toString());
-                    });
-                  }
-                }),
+                    },
+                  );
+                }
+              },
+            ),
           )
         ],
       ),

@@ -4,15 +4,15 @@ import 'package:api_tutorials_youtube/models/postModel.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class home_screen extends StatefulWidget {
-  const home_screen({Key? key}) : super(key: key);
+class home_screen_example1 extends StatefulWidget {
+  const home_screen_example1({Key? key}) : super(key: key);
 
   @override
-  State<home_screen> createState() => _home_screenState();
+  State<home_screen_example1> createState() => _home_screenState();
 }
 
 //[] arry ar botore name na thakar karone ato kiso likhte hoilo
-class _home_screenState extends State<home_screen> {
+class _home_screenState extends State<home_screen_example1> {
   List<PostModel> postList = [];
 
   Future<List<PostModel>> getPostApi() async {
@@ -64,13 +64,17 @@ class _home_screenState extends State<home_screen> {
                               ),
                               // Text('title',style: Theme.of(context).textTheme.bodyText1,),//sundor korar jonno ai line ta use kora hoi
                               Text(postList[index].title.toString()),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 10,
+                              ),
                               const Text(
                                 "Discription",
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text('Discription\n${postList[index].body}')
                             ],
                           ),

@@ -21,6 +21,7 @@ class _home_screenState extends State<home_screen> {
     var data = jsonDecode(response.body.toString());
     if (response.statusCode == 200) {
       postList.clear(); // opporer list ar jonno []
+      // aita lekhte hoi karon []  ar jodi kono name na thake thaole
       for (Map i in data) {
         postList.add(PostModel.fromJson(i));
       }
@@ -49,16 +50,28 @@ class _home_screenState extends State<home_screen> {
                     itemBuilder: (context, index) {
                       postList.length;
                       return Card(
+                        //video number 7 a 15 minit ar por khob sundor kore kora ase nijer koto
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text('title \n' +
-                                  postList[index].title.toString()),
-                              Text('Discription\n' +
-                                  postList[index].title.toString())
+                              const Text(
+                                'title',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              // Text('title',style: Theme.of(context).textTheme.bodyText1,),//sundor korar jonno ai line ta use kora hoi
+                              Text(postList[index].title.toString()),
+                              SizedBox(height: 10,),
+                              const Text(
+                                "Discription",
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              SizedBox(height: 10,),
+                              Text('Discription\n${postList[index].body}')
                             ],
                           ),
                         ),

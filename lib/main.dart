@@ -1,13 +1,16 @@
-import 'package:api_tutorials_youtube/home_scrren.dart';
+import 'package:api_tutorials_youtube/getAPi/post_show_in_display/home_scrren_video_7.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
+import 'getAPi/title_with_photos_video_8/example_pothos_api.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const rest_api());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class rest_api extends StatelessWidget {
+  const rest_api({super.key});
 
   // This widget is the root of your application.
   @override
@@ -18,7 +21,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: home_screen(),
+      home: ExampleTwo(),
     );
   }
 }
